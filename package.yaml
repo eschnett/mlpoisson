@@ -116,6 +116,7 @@ tests:
       - QuickCheck
       - base
       - mlpoisson
+      - polynomial
       - tasty
       - tasty-discover
       - tasty-hspec

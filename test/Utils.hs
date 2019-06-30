@@ -9,5 +9,5 @@ minmax x y = (min x y, max x y)
 range :: Real a => a -> a -> a
 range m x = mod' (x + m) (2 * m) - m
 
-(~~) :: (Ord a, Fractional a) => a -> a -> Property
-x ~~ y = (abs (x - y) < 1.0e-12) === True
+(~~) :: (Fractional a, Ord a, Show a) => a -> a -> Property
+x ~~ y = counterexample (show x ++ " ~~ " ++ show y) $ abs (x - y) < 1.0e-12
