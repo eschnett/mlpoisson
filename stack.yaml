@@ -1,0 +1,8 @@
+resolver: lts-13.26
+
+packages:
+  - .
+
+extra-deps:
+ - git: https://github.com/eschnett/polynomial.git
+   commit: e89fd037ad12a54db0bb62e42104d24fabcfe777

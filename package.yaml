@@ -1,0 +1,126 @@
+# This YAML file describes your package. Stack will automatically generate a
+# Cabal file when you run `stack build`. See the hpack website for help with
+# this file: <https://github.com/sol/hpack>.
+name: mlpoisson
+version: '0.0.0'
+github: "eschnett/mlpoisson"
+license: MIT
+author: "Erik Schnetter"
+maintainer: "Erik Schnetter"
+# synopsis: A new Haskell package.
+# description: mlpoisson is a new Haskell package.
+# category: Other
+
+extra-source-files:
+  - CHANGELOG.md
+  - LICENSE.md
+  - package.yaml
+  - README.md
+  - stack.yaml
+
+ghc-options:
+  - -foptimal-applicative-do
+  - -funbox-strict-fields
+  - -Wall
+  - -Wcompat
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wredundant-constraints
+  - -Wno-unused-matches
+
+default-extensions:
+  - ApplicativeDo
+  - BangPatterns
+  - BinaryLiterals
+  - BlockArguments
+  - ConstraintKinds
+  - DataKinds
+  - DefaultSignatures
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable
+  - DerivingStrategies
+  - EmptyCase
+  - ExistentialQuantification
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - InstanceSigs
+  - KindSignatures
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - OverloadedLists
+  - OverloadedStrings
+  - ParallelListComp
+  - PatternSynonyms
+  - QuantifiedConstraints
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeFamilyDependencies
+  - TypeOperators
+  - TypeSynonymInstances
+  - UnicodeSyntax
+  # more controversial?
+  - AllowAmbiguousTypes
+  - MonadComprehensions
+  - PackageImports
+  - PolyKinds
+  - TypeInType
+
+library:
+  dependencies:
+    - base
+    - polynomial
+  source-dirs: src
+
+executables:
+  mlpoisson:
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+      - base
+      - mlpoisson
+    ghc-options:
+      - -rtsopts
+      - -threaded
+      - -with-rtsopts=-N
+
+benchmarks:
+  mlpoisson-benchmarks:
+    source-dirs: bench
+    main: Main.hs
+    dependencies:
+      - base
+      - criterion
+      - mlpoisson
+    ghc-options:
+      - -rtsopts
+      - -threaded
+      - -with-rtsopts=-N
+
+tests:
+  mlpoisson-test-suite:
+    source-dirs: test
+    main: Main.hs
+    dependencies:
+      - QuickCheck
+      - base
+      - mlpoisson
+      - tasty
+      - tasty-discover
+      - tasty-hspec
+      - tasty-quickcheck
+    ghc-options:
+      - -rtsopts
+      - -threaded
+      - -with-rtsopts=-N
